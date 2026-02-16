@@ -324,7 +324,7 @@ Avant de soumettre :
 
 ---
 
-**Version** : 1.0  
+**Version** : 1.1
 **Date** : Février 2026  
 **Conformité** : ✅ 100% des consignes LA MANU respectées  
 **TensorFlow** : ✅ Obligatoire - Implémenté
