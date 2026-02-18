@@ -82,14 +82,6 @@ print(f"  Récence  : {stats.skew(rfm['Recency']):.4f}")
 print(f"  Fréquence: {stats.skew(rfm['Frequency']):.4f}")
 print(f"  Montant  : {stats.skew(rfm['Monetary']):.4f}")
 
-print("\n❓ Pourquoi une simple standardisation ne suffit pas pour le montant ?")
-print("━" * 80)
-print("RÉPONSE :")
-print("  1. Distribution fortement asymétrique (skewness = 19.32)")
-print("  2. Présence de valeurs extrêmes (outliers)")
-print("  3. StandardScaler assume une distribution normale")
-print("  4. Les outliers dominent la variance et biaisent l'analyse")
-print("  5. SOLUTION : Transformation logarithmique + standardisation")
 
 # Visualisation des distributions
 fig, axes = plt.subplots(2, 3, figsize=(15, 10))
@@ -138,26 +130,6 @@ cumulative_variance = np.cumsum(explained_variance)
 print("\nVariance expliquée par composante :")
 for i, (var, cum_var) in enumerate(zip(explained_variance, cumulative_variance)):
     print(f"  PC{i+1}: {var:.4f} ({var*100:.2f}%) | Cumulé: {cum_var:.4f} ({cum_var*100:.2f}%)")
-
-print("\n❓ Questions théoriques PCA :")
-print("━" * 80)
-print("Q1: Pourquoi une variable avec variance immense écraserait les autres ?")
-print("RÉPONSE :")
-print("  - PCA maximise la variance")
-print("  - Sans standardisation : montant (0-280K) >> fréquence (1-209)")
-print("  - PC1 s'aligne presque uniquement sur l'axe du montant")
-print("  - Les autres dimensions sont ignorées")
-print("  - StandardScaler égalise l'influence (μ=0, σ=1)")
-
-covariance_matrix = np.cov(rfm_scaled.T)
-det = np.linalg.det(covariance_matrix)
-print(f"\nQ2: Déterminant de la matrice de covariance = {det:.6f}")
-print("RÉPONSE :")
-print("  - Déterminant proche de 0 → multicolinéarité")
-print("  - Variables presque linéairement dépendantes")
-print("  - Matrice quasi-singulière")
-print("  - Une valeur propre ≈ 0")
-print("  - Opportunité de réduction de dimension efficace")
 
 # Visualisation PCA
 fig, axes = plt.subplots(1, 2, figsize=(15, 5))
